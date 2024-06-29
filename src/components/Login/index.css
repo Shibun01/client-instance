@@ -1,0 +1,267 @@
+.main-container {
+    overflow: hidden;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.header-title,
+.header-subtitle,
+.forgot-password,
+.or-text {
+    width: 100%;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 1280px;
+    height: auto;
+    overflow: hidden;
+    gap: 32px;
+    padding: 16px; /* Adjusted padding for better responsiveness */
+    background: #fff;
+}
+
+.left-pane,
+.right-pane {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    gap: 24px;
+    padding: 48px 16px;
+    border-radius: 32px;
+    background: #fff;
+}
+
+.left-pane {
+    border-radius: 32px 32px 0 0;
+}
+
+.right-pane {
+    border-radius: 0 0 32px 32px;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 4px;
+    padding: 0 16px;
+    text-align: center;
+}
+
+.header-title {
+    font-size: 24px;
+    font-weight: 600;
+    color: #1d2939;
+}
+
+.header-subtitle {
+    font-size: 14px;
+}
+
+.header-subtitle span {
+    font-weight: 500;
+    color: #475467;
+}
+
+.header-subtitle .register {
+    font-weight: 600;
+    color: #7a4939;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding-bottom: 12px;
+}
+
+.input-field {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 46px;
+    gap: 8px;
+    padding: 12px;
+    border-radius: 12px;
+    background: #f9f9f9;
+}
+
+.input-field-inner {
+    border: none;
+    background: #f9f9f9;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: left;
+}
+
+.input-field-inner:focus {
+    outline: none;
+}
+
+.input-field svg {
+    width: 28px;
+    height: 28px;
+}
+
+.input-field p {
+    font-size: 16px;
+    font-weight: 500;
+    text-align: left;
+    color: #98a2b3;
+}
+
+.forgot-password {
+    font-size: 11px;
+    font-weight: 600;
+    text-align: right;
+    color: #7a4939;
+}
+
+.button-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.login-button {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 56px;
+    gap: 10px;
+    padding: 12px;
+    border-radius: 8px;
+    background: #41261d;
+    border: 1px solid #7a4939;
+    font-size: 18px;
+    font-weight: 700;
+    text-align: left;
+    color: #fff;
+}
+
+.login-button p {
+    font-size: 16px;
+    font-weight: 500;
+    text-align: left;
+    color: #fff;
+}
+
+.or-text {
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+    color: #475467;
+}
+
+.social-login {
+    display: flex;
+    gap: 12px;
+}
+
+.social-login .social-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    height: 60px;
+    gap: 16px;
+    padding: 12px;
+    border-radius: 12px;
+    background: #f9f9f9;
+}
+
+.social-login .social-button img {
+    width: 28px;
+    height: 28px;
+}
+
+.social-login .social-button p {
+    font-size: 16px;
+    font-weight: 500;
+    text-align: left;
+    color: #1d2939;
+}
+
+@media (min-width: 1024px) {
+    .container {
+        flex-direction: row;
+        height: 832px;
+        /* padding: 198px 32px; */
+    }
+
+    .left-pane,
+    .right-pane {
+        flex-direction: column;
+        padding: 48px;
+    }
+
+    .left-pane {
+        border-radius: 32px;
+    }
+
+    .right-pane {
+        border-radius: 16px 16px 0 0;
+    }
+
+    .header-title,
+    .header-subtitle,
+    .forgot-password,
+    .or-text {
+        width: 464px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    .container {
+        flex-direction: row;
+        /* height: 832px; */
+        padding: 0 32px; /* No large padding for laptops */
+    }
+
+    .left-pane,
+    .right-pane {
+        flex-direction: column;
+        padding: 48px;
+    }
+
+    .left-pane {
+        border-radius: 32px;
+    }
+
+    .right-pane {
+        border-radius: 16px 16px 0 0;
+    }
+
+    .header-title,
+    .header-subtitle,
+    .forgot-password,
+    .or-text {
+        width: 464px;
+    }
+}
+
+@media (max-width: 767px) {
+    .container {
+        flex-direction: column;
+        padding: 0;
+    }
+
+    .header-title,
+    .header-subtitle,
+    .forgot-password,
+    .or-text {
+        width: 100%;
+    }
+}
