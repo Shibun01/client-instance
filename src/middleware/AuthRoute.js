@@ -5,7 +5,12 @@ import AuthService from './AuthService';
 
 const AuthRoute = ({ children }) => {
     const token = useSelector((state) => state.auth.token);
-    return AuthService.isAuthenticated(token) ? children : <Navigate to="/login" />;
+
+    if (!token || !AuthService.isAuthenticated(token)) {
+        return <Navigate to="/login" />;
+    }
+
+    return children;
 };
 
 export default AuthRoute;

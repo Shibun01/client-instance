@@ -1,0 +1,18 @@
+.Desktop-header-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.Desktop-header-container .header-mix-container {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+}
+
+.header-mix-cart-section{
+    cursor: pointer;
+}
+
+.header-logo-container{
+    cursor: pointer;
+}

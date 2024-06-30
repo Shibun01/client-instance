@@ -1,0 +1,235 @@
+/* CSS for making images responsive */
+.Shop_image_section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.Shop_detail_container {
+    flex: 1 1 200px;
+    margin-top: 1.5rem; /* Specific top margin */
+    margin-left: 1rem; /* Specific left margin */
+    margin-right: 1rem;
+}
+
+/* .Shop_image {
+    flex: 1 1 200px;
+    margin: 1.5rem;
+} */
+.Shop_image {
+    width: 100%;
+    height: 20rem; /* Set a fixed height for the image container */
+    overflow: hidden; /* Hide overflow to ensure the image stays within the container */
+}
+
+.Shop_image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    object-position: center; 
+}
+
+/* Alternative using CSS Grid */
+/*
+.Shop_image_section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+}
+*/
+
+/* .Shop_container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+} */
+
+.Dashboard_Header_container,
+.Shop_detail_container {
+    margin-bottom: 20px;
+}
+
+.Shop_category_container,
+.Shop_product_container {
+    margin-bottom: 40px;
+}
+
+.Shop_detail_content {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    padding-top: 1rem;
+}
+
+
+.Shop_detail_title {
+    font-size: 1.9rem;
+    font-weight: 700;
+    color: #1d2939;
+}
+
+.Shop_detail_subtitle {
+    width: 60%;
+    align-self: stretch;
+    flex-grow: 0;
+    flex-shrink: 0;
+    font-size: 11px;
+    font-weight: 500;
+    text-align: left;
+    color: #667085;
+}
+
+.Shop_detail_rating_container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    align-self: stretch;
+    flex-grow: 0;
+    flex-shrink: 0;
+    position: relative;
+    gap: 4px;
+}
+
+.Shop_detail_rating_icon {
+    flex-grow: 0;
+    flex-shrink: 0;
+    width: 16px;
+    height: 16px;
+    position: relative;
+}
+
+.Shop_detail_rating_text {
+    align-self: stretch;
+    flex-grow: 1;
+    width: 1196px;
+    height: 16px;
+    font-size: 11px;
+    text-align: left;
+}
+
+.Shop_detail_rating_value {
+    align-self: stretch;
+    flex-grow: 1;
+    width: 1196px;
+    height: 16px;
+    font-size: 11px;
+    font-weight: 600;
+    text-align: left;
+    color: #344054;
+}
+
+.Shop_detail_rating_reviews {
+    align-self: stretch;
+    flex-grow: 1;
+    width: 1196px;
+    height: 16px;
+    font-size: 11px;
+    font-weight: 500;
+    text-align: left;
+    color: #7a4939;
+}
+
+
+.Shop_category_inner_container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1rem;
+}
+
+.Shop_category_container {
+    flex: 1 1 200px;
+    margin: 1.5rem;
+}
+
+.Category_icons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 12px 16px;
+    border-radius: 8px;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.04);
+    cursor: pointer;
+    gap: 0.5rem;
+}
+
+.Category_icons p {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: left;
+}
+
+.Category_icons.Coffee p {
+    color: #1d2939;
+}
+
+.Category_icons.Drinks p,
+.Category_icons.Foods p {
+    color: #667085;
+}
+
+.Category_icons.selected {
+    background: rgb(255, 230, 222);
+}
+
+.Category_icons.selected p {
+    color: #1d2939;
+}
+
+.Shop_product_container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 100%;
+}
+
+.Shop_card {
+    margin: 1rem;
+    display: flex;
+    position: relative;
+    padding: 8px;
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 0px 0px 4px 0 rgba(0, 0, 0, 0.04);
+}
+
+.Shop_card_image {
+    width: 9rem;
+    height: 9.8rem;
+    border-radius: 4px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.Shop_card_content {
+    display: flex;
+    flex-direction: column;
+    margin-left: 16px;
+    width: 16rem;
+}
+
+.Shop_card_title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1d2939;
+}
+
+.Shop_card_description {
+    font-size: 12px;
+    font-weight: 500;
+    color: #667085;
+}
+
+.Shop_card_price {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1d2939;
+}
+
+.Shop_card_add {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    cursor: pointer;
+}

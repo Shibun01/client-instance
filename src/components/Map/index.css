@@ -1,0 +1,13 @@
+.Map_container {
+    margin: 1.5rem;
+    height: 80vh;
+    overflow: hidden;
+}
+
+.Explore_main_container {
+    margin-bottom: 20px;
+}
+
+.Explore_header_container {
+    padding: 20px 40px 0px;
+}
