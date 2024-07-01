@@ -8,6 +8,7 @@ import FilterIconSVG from "../../utils/svgs/Dashboard/FilterIconSVG";
 import LocationIconSVG from "../../utils/svgs/Dashboard/LocationIconSVG";
 import StarSVG from "../../utils/svgs/Common/StarSVG";
 import MapSVG from "../../utils/svgs/MapSVG";
+import ExploreSVG from "../../utils/svgs/Common/ExploreSVG";
 
 const Dashboard = () => {
     const [searchQuery, setSearchQuery] = useState('');
@@ -25,9 +26,6 @@ const Dashboard = () => {
     return (
         <>
             <div className="Dashboard_Container">
-                <div className="Dashboard_Header_container">
-                    <DesktopHeader />
-                </div>
                 <div className="Dashboard_Body_container">
                     <div className="Dashboard_Search_container">
                         <div className="Dashboard_Search_inner_container">
@@ -42,10 +40,12 @@ const Dashboard = () => {
                                         onChange={(e) => setSearchQuery(e.target.value)}
                                     />
                                 </div>
+                                <div>
                                 <FilterIconSVG />
-                            </div>
-                            <div className="Dashboard_Location_container" onClick={handleMapClick}>
-                                    <MapSVG />
+                                </div>
+                                <div onClick={handleMapClick}>
+                                <ExploreSVG />
+                                </div>
                             </div>
                         </div>
                     </div>

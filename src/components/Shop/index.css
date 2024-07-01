@@ -7,8 +7,10 @@
 
 .Shop_detail_container {
     flex: 1 1 200px;
-    margin-top: 1.5rem; /* Specific top margin */
-    margin-left: 1rem; /* Specific left margin */
+    margin-top: 1.5rem;
+    /* Specific top margin */
+    margin-left: 1rem;
+    /* Specific left margin */
     margin-right: 1rem;
 }
 
@@ -18,15 +20,17 @@
 } */
 .Shop_image {
     width: 100%;
-    height: 20rem; /* Set a fixed height for the image container */
-    overflow: hidden; /* Hide overflow to ensure the image stays within the container */
+    height: 20rem;
+    /* Set a fixed height for the image container */
+    overflow: hidden;
+    /* Hide overflow to ensure the image stays within the container */
 }
 
 .Shop_image img {
     width: 100%;
     height: 100%;
-    object-fit: cover; 
-    object-position: center; 
+    object-fit: cover;
+    object-position: center;
 }
 
 /* Alternative using CSS Grid */
@@ -63,7 +67,7 @@
 
 
 .Shop_detail_title {
-    font-size: 1.9rem;
+    font-size: 1.8rem;
     font-weight: 700;
     color: #1d2939;
 }
@@ -73,7 +77,7 @@
     align-self: stretch;
     flex-grow: 0;
     flex-shrink: 0;
-    font-size: 11px;
+    font-size: 0.688rem;
     font-weight: 500;
     text-align: left;
     color: #667085;
@@ -190,7 +194,7 @@
     padding: 8px;
     border-radius: 8px;
     background: #fff;
-    box-shadow: 0px 0px 4px 0 rgba(0, 0, 0, 0.04);
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
 }
 
 .Shop_card_image {
@@ -210,26 +214,80 @@
 }
 
 .Shop_card_title {
-    font-size: 18px;
+    font-size: 1.125rem;
     font-weight: 600;
     color: #1d2939;
 }
 
 .Shop_card_description {
-    font-size: 12px;
+    font-size: 0.75rem;
     font-weight: 500;
     color: #667085;
 }
 
 .Shop_card_price {
-    font-size: 14px;
+    font-size: 0.875rem;
     font-weight: 600;
     color: #1d2939;
 }
 
 .Shop_card_add {
+    top: auto;
+    bottom: 86%;
+    right: -1%;
     position: absolute;
-    top: 8px;
-    right: 8px;
     cursor: pointer;
+}
+
+@media (max-width: 480px) {
+    .Shop_product_container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+    }
+
+    .Shop_detail_subtitle {
+        width: 100%;
+    }
+
+    .Shop_card_image {
+        width: 50%;
+        height: auto;
+    }
+
+    .Shop_card_title {
+        line-height: 0px;
+    }
+
+    .Shop_card_add {
+        bottom: 85%;
+        right: -2%;
+        top: auto;
+    }
+
+    .Shop_card {
+        margin: 0;
+        width: 90%;
+    }
+
+    .Shop_image img {
+        border-radius: 1.5rem;
+    }
+
+    .Shop_card_content{
+        width: 80%;
+    }
+
+    .Shop_card_top_content{
+        display: flex;
+        flex-direction: column;
+        gap: 0.1rem;
+    }
+
+    .Shop_card_price{
+        line-height: 0.1rem;
+    }
+
 }

@@ -30,14 +30,11 @@ const MapPage = () => {
 
     return (
         <div className="Explore_main_container">
-            <div className="Explore_header_container">
-                <DesktopHeader />
-            </div>
             <div className="Map_container">
                 <MapContainer
                     center={[shops[0]?.location.latitude || 0, shops[0]?.location.longitude || 0]}
                     zoom={13}
-                    style={{ height: '100%', width: '100%' }}
+                    style={{ height: '100%', width: '100%', borderRadius: '20px' }}
                     className="Leaflet_map"
                 >
                     <TileLayer

@@ -55,9 +55,6 @@ const Shop = () => {
 
     return (
         <div className="Shop_container">
-            <div className="Dashboard_Header_container">
-                <DesktopHeader />
-            </div>
             <div className="Shop_detail_container">
                 <div className="Shop_image_section">
                     {shop?.data[0]?.images?.map((image, index) => (
@@ -123,7 +120,7 @@ const Shop = () => {
                                     style={{ backgroundImage: `url(${product.image_url})` }}
                                 />
                                 <div className="Shop_card_content">
-                                    <div>
+                                    <div className="Shop_card_top_content">
                                         <h1 className="Shop_card_title">{product.name}</h1>
                                         <h1 className="Shop_card_description">{product.description}</h1>
                                     </div>

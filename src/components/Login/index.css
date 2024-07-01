@@ -6,6 +6,14 @@
     align-items: center;
     flex-direction: column;
 }
+.mobile-content {
+    /* Add your mobile-specific styles here */
+    text-align: center;
+    padding: 20px;
+    font-size: 18px;
+    color: #333;
+}
+
 
 .header-title,
 .header-subtitle,
@@ -265,15 +273,33 @@
 }
 
 @media (max-width: 767px) {
-    .container {
-        flex-direction: column;
-        padding: 0;
-    }
-
+    
     .header-title,
     .header-subtitle,
     .forgot-password,
     .or-text {
         width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .input-field{
+        height: 2rem;
+    }
+    .container {
+        flex-direction: column;
+        padding: 0;
+        gap: 15px;
+    }
+    .main-container{
+        height: 90%;
+    }
+    .left-pane{
+        background: #582711;
+        border-radius: 0;
+        width: 100%;
+    }
+    .right-pane{
+        padding: 0;
     }
 }

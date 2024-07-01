@@ -1,12 +1,15 @@
 import React, { Suspense } from 'react';
 import { BrowserRouter as Router, Route, Routes, useLocation, Navigate } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
+import { useMediaQuery } from 'react-responsive';
 import AuthRoute from './middleware/AuthRoute';
 import Login from './components/Login';
 import Dashboard from './components/Dashboard';
 import Shop from './components/Shop';
 import MapPage from './components/Map';
 import SkeletonLoader from './components/Skeleton';
+import DesktopHeader from './components/Common/Header/Desktop';
+import MobileHeader from './components/Common/Header/Moblie';
 
 const pageVariants = {
   initial: {
@@ -91,20 +94,27 @@ const AnimatedRoutes = () => {
   );
 };
 
-const App = () => (
-  <Router>
-    <motion.div
-      initial="initial"
-      animate="in"
-      exit="out"
-      variants={pageVariants}
-      transition={pageTransition}
-    >
-      <Suspense fallback={<SkeletonLoader />}>
-        <AnimatedRoutes />
-      </Suspense>
-    </motion.div>
-  </Router>
-);
+const App = () => {
+  const isLoginPage = window.location.pathname === "/login";
+  const isDesktop = useMediaQuery({ minWidth: 768 });
+
+  return (
+    <Router>
+      {!isLoginPage && !isDesktop && <MobileHeader />}
+      {!isLoginPage && !isDesktop && <DesktopHeader />}
+      <motion.div
+        initial="initial"
+        animate="in"
+        exit="out"
+        variants={pageVariants}
+        transition={pageTransition}
+      >
+        <Suspense fallback={<SkeletonLoader />}>
+          <AnimatedRoutes />
+        </Suspense>
+      </motion.div>
+    </Router>
+  );
+};
 
 export default App;
