@@ -6,10 +6,15 @@
     z-index: 1000;
     padding: 1rem;
     margin-bottom: 1rem;
+    background-color: white;
 
 }
 
-.Desktop-header-mobile-container{
+.header-mix-menu-section {
+    cursor: pointer;
+}
+
+.Desktop-header-mobile-container {
     background-color: white;
 }
 
@@ -19,11 +24,11 @@
     gap: .5rem;
 }
 
-.header-mix-cart-section{
+.header-mix-cart-section {
     cursor: pointer;
 }
 
-.header-logo-container{
+.header-logo-container {
     cursor: pointer;
 }
 

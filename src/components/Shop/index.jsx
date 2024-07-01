@@ -13,6 +13,9 @@ import CategoryFoodSVG from "../../utils/svgs/Shops/Category/CategoryFoodSVG";
 import StartSVG from "../../utils/svgs/Common/StarSVG";
 import AddPlusSVG from "../../utils/svgs/Shops/Products/AddPlusSVG";
 import TickSVG from "../../utils/svgs/Shops/Products/CartAddedSVG";
+import FavoriteAddSVG from "../../utils/svgs/Shops/Products/FavoriteSVG";
+import { addToFav, removeFromFav } from "../../lib/redux/reducers/favReducer";
+import AddedFavoriteSVG from "../../utils/svgs/Shops/Products/AddedFavoriteSVG";
 
 const useQuery = () => {
     return new URLSearchParams(useLocation().search);
@@ -35,6 +38,7 @@ const Shop = () => {
 
     const dispatch = useDispatch();
     const cartItems = useSelector(state => state.cart.items);
+    const favItems = useSelector(state => state.fav.items);
 
     if (isLoading) return <div>Loading...</div>;
     if (error) return <div>Error loading shop details</div>;
@@ -50,6 +54,14 @@ const Shop = () => {
     const handleRemoveFromCart = (product) => {
         dispatch(removeFromCart(product));
     };
+
+    const handleAddToFav = (product) => {
+        dispatch(addToFav(product))
+    }
+
+    const handleRemoveFromFav = (product) => {
+        dispatch(removeFromFav(product))
+    }
 
     const products = productData?.data.filter((item) => selectedCategory.toLowerCase() === item.category);
 
@@ -105,6 +117,7 @@ const Shop = () => {
                 <AnimatePresence mode="wait">
                     {products?.map((product) => {
                         const isInCart = cartItems.some(item => item._id === product._id);
+                        const isInFav = favItems.some(item => item._id === product._id);
                         return (
                             <motion.div
                                 key={product._id}
@@ -127,15 +140,20 @@ const Shop = () => {
                                     <h1 className="Shop_card_price">${product.price}</h1>
                                 </div>
                                 <div className="Shop_card_add">
-                                    {isInCart ?
-                                        <div onClick={() => handleRemoveFromCart(product)}>
-                                            <TickSVG />
-                                        </div>
-                                        :
-                                        <div onClick={() => handleAddToCart(product)}>
-                                            <AddPlusSVG />
-                                        </div>
-                                    }
+                                    <motion.div
+                                        whileTap={{ scale: 0.9 }}
+                                        onClick={() => isInCart ? handleRemoveFromCart(product) : handleAddToCart(product)}
+                                    >
+                                        {isInCart ? <TickSVG /> : <AddPlusSVG />}
+                                    </motion.div>
+                                </div>
+                                <div className="Shop_favorite_add">
+                                    <motion.div
+                                        whileTap={{ scale: 0.9 }}
+                                        onClick={() => isInFav ? handleRemoveFromFav(product) : handleAddToFav(product)}
+                                    >
+                                        {isInFav ? <AddedFavoriteSVG /> : <FavoriteAddSVG />}
+                                    </motion.div>
                                 </div>
                             </motion.div>
                         );

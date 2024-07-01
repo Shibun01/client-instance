@@ -5,16 +5,18 @@ import { setupListeners } from '@reduxjs/toolkit/query';
 import { authReducer } from '../reducers/authReducer';
 import { apiSlice } from '../api/rootApi';
 import { cartReducer } from '../reducers/cartReducer';
+import { favReducer } from '../reducers/favReducer';
 
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['auth', 'cart'],
+  whitelist: ['auth', 'cart', 'fav'],
 };
 
 const rootReducer = combineReducers({
   auth: authReducer,
   cart: cartReducer,
+  fav: favReducer,
   [apiSlice.reducerPath]: apiSlice.reducer,
 });
 

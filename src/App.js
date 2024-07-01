@@ -10,11 +10,14 @@ import MapPage from './components/Map';
 import SkeletonLoader from './components/Skeleton';
 import DesktopHeader from './components/Common/Header/Desktop';
 import MobileHeader from './components/Common/Header/Moblie';
+import Favorites from './components/Favorite';
+import Profile from './components/Profile';
+import AddToCart from './components/Cart';
 
 const pageVariants = {
   initial: {
     opacity: 0,
-    y: -20 
+    y: -20
   },
   in: {
     opacity: 1,
@@ -22,7 +25,7 @@ const pageVariants = {
   },
   out: {
     opacity: 0,
-    y: 20 
+    y: 20
   }
 };
 
@@ -88,6 +91,45 @@ const AnimatedRoutes = () => {
             </AuthRoute>
           </motion.div>
         } />
+        <Route path="/favorite" element={
+          <motion.div
+            initial="initial"
+            animate="in"
+            exit="out"
+            variants={pageVariants}
+            transition={pageTransition}
+          >
+            <AuthRoute>
+              <Favorites />
+            </AuthRoute>
+          </motion.div>
+        } />
+        <Route path="/profile" element={
+          <motion.div
+            initial="initial"
+            animate="in"
+            exit="out"
+            variants={pageVariants}
+            transition={pageTransition}
+          >
+            <AuthRoute>
+              <Profile />
+            </AuthRoute>
+          </motion.div>
+        } />
+        <Route path="/cart" element={
+          <motion.div
+            initial="initial"
+            animate="in"
+            exit="out"
+            variants={pageVariants}
+            transition={pageTransition}
+          >
+            <AuthRoute>
+              <AddToCart />
+            </AuthRoute>
+          </motion.div>
+        } />
         <Route path="*" element={<Navigate to="/login" />} />
       </Routes>
     </AnimatePresence>
@@ -101,7 +143,7 @@ const App = () => {
   return (
     <Router>
       {!isLoginPage && !isDesktop && <MobileHeader />}
-      {!isLoginPage && !isDesktop && <DesktopHeader />}
+      {!isLoginPage && <DesktopHeader />}
       <motion.div
         initial="initial"
         animate="in"

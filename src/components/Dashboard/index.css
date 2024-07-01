@@ -3,6 +3,18 @@
     padding-bottom: 3.75rem;
 }
 
+.Dashboard_Explore_container{
+    cursor: pointer;
+}
+
+.Dashboard_Filter_container{
+    cursor: pointer;
+}
+
+.Desktop_Search_mobile_container{
+    width: 80% !important;
+}
+
 .Dashboard_Header_container {
     padding: 1.25rem 2.5rem 0px;
 }
@@ -30,7 +42,7 @@
     flex-grow: 0;
     flex-shrink: 0;
     height: 2rem;
-    width: 100%;
+    width: 50%;
     position: relative;
     overflow: hidden;
     gap: 0.625rem;

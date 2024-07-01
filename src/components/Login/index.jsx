@@ -11,6 +11,7 @@ import { clearCart } from "../../lib/redux/reducers/cartReducer";
 import EmailSVG from "../../utils/svgs/Login/EmailSVG";
 import PasswordSVG from "../../utils/svgs/Login/PasswordSVG";
 import NameSVG from "../../utils/svgs/Login/NameSVG";
+import { clearFav } from "../../lib/redux/reducers/favReducer";
 
 const pageVariants = {
     initial: { opacity: 0, x: -100 },
@@ -45,6 +46,7 @@ const Login = () => {
     useEffect(() => {
         dispatch(logout());
         dispatch(clearCart());
+        dispatch(clearFav())
     }, [dispatch]);
 
     const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -102,7 +104,7 @@ const Login = () => {
             }));
             showSuccessPopup("Login successful!");
             setTimeout(() => {
-                navigate('/dashboard');
+                window.location.replace('/dashboard');
             }, 2500);
         } catch (error) {
             dispatch(loginFailure({ error: error.data.message }));

@@ -14,32 +14,27 @@ const MobileHeader = () => {
     const cartCount = cartItems.length;
     const navigate = useNavigate();
 
-    const handleLogoClick = () => {
-        navigate('/dashboard');
-    }
+
+    const handleNavigation = (path) => {
+        navigate(path);
+    };
 
 
     return (
         <div className="mobile-header">
-            <div className="menu-item" onClick={handleLogoClick}>
+            <div className="menu-item" onClick={() => handleNavigation('/dashboard')}>
                 <div className="menu-icon">
                     <HomeSVG />
                 </div>
                 <h1 className="menu-text">Home</h1>
             </div>
-            <div className="menu-item">
+            <div className="menu-item" onClick={() => handleNavigation('/favorite')}>
                 <div className="menu-icon">
                     <FavouriteSVG />
                 </div>
                 <h1 className="menu-text">Favourites</h1>
             </div>
-            {/* <div className="menu-item">
-            <div className="menu-icon">
-                    <LogoutSVG />
-                </div>
-                <h1 className="menu-text">Log Out</h1>
-            </div> */}
-            <div className="menu-item">
+            <div className="menu-item" onClick={() => handleNavigation('/profile')}>
                 <div className="menu-icon">
                     <ProfileSVG />
                 </div>

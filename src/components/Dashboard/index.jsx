@@ -9,11 +9,14 @@ import LocationIconSVG from "../../utils/svgs/Dashboard/LocationIconSVG";
 import StarSVG from "../../utils/svgs/Common/StarSVG";
 import MapSVG from "../../utils/svgs/MapSVG";
 import ExploreSVG from "../../utils/svgs/Common/ExploreSVG";
+import { useMediaQuery } from "react-responsive";
 
 const Dashboard = () => {
     const [searchQuery, setSearchQuery] = useState('');
     const { data: ShopData, error, isLoading } = useGetAllShopsQuery();
     const navigate = useNavigate();
+    const isDesktop = useMediaQuery({ minWidth: 768 });
+
 
     const handleCardClick = (shopId) => {
         navigate(`/shop?id=${shopId}`);
@@ -29,7 +32,7 @@ const Dashboard = () => {
                 <div className="Dashboard_Body_container">
                     <div className="Dashboard_Search_container">
                         <div className="Dashboard_Search_inner_container">
-                            <div className="Dashboard_Search_input_container">
+                            <div className={`Dashboard_Search_input_container ${!isDesktop ? 'Desktop_Search_mobile_container': ''}`}>
                                 <div className="Dashboard_Search_input">
                                     <SearchIconSVG />
                                     <input
@@ -40,10 +43,10 @@ const Dashboard = () => {
                                         onChange={(e) => setSearchQuery(e.target.value)}
                                     />
                                 </div>
-                                <div>
+                                <div className="Dashboard_Filter_container">
                                 <FilterIconSVG />
                                 </div>
-                                <div onClick={handleMapClick}>
+                                <div onClick={handleMapClick} className="Dashboard_Explore_container">
                                 <ExploreSVG />
                                 </div>
                             </div>

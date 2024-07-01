@@ -5,6 +5,14 @@
     justify-content: center;
 }
 
+.Shop_favorite_add{
+    top: auto;
+    bottom: 1%;
+    right: 2%;
+    position: absolute;
+    cursor: pointer;
+}
+
 .Shop_detail_container {
     flex: 1 1 200px;
     margin-top: 1.5rem;
@@ -241,6 +249,7 @@
 
 @media (max-width: 480px) {
     .Shop_product_container {
+        margin-bottom: 5rem;
         display: flex;
         flex-direction: column;
         justify-content: center;
