@@ -26,7 +26,7 @@ const AddToCart = () => {
     const cartItems = useSelector(state => state.cart.items);
 
     const [subtotal, setSubtotal] = useState(0);
-    const [deliveryFee, setDeliveryFee] = useState(5); 
+    const [deliveryFee, setDeliveryFee] = useState(5);
     const [total, setTotal] = useState(0);
 
     useEffect(() => {
@@ -54,52 +54,74 @@ const AddToCart = () => {
     };
 
     return (
-        <div className="container">
-            <div className="Cart-product-main-container">
-                <div className="Cart_product_container">
-                    <AnimatePresence initial={false} custom={null}>
-                        {cartItems?.map((product) => {
-                            const isInCart = cartItems.some(item => item._id === product._id);
-                            const isInFav = favItems.some(item => item._id === product._id);
-                            return (
-                                <motion.div
-                                    key={product._id}
-                                    initial="initial"
-                                    animate="in"
-                                    exit="out"
-                                    variants={pageVariants}
-                                    transition={pageTransition}
-                                    className="Cart_card"
-                                >
-                                    <div
-                                        className="Cart_card_image"
-                                        style={{ backgroundImage: `url(${product.image_url})` }}
-                                    />
-                                    <div className="Shop_card_content">
-                                        <div className="Shop_card_top_content">
-                                            <h1 className="Shop_card_title">{product.name}</h1>
-                                            <CartMinusSVG /> <CartPlusSVG />
-                                        </div>
-                                        <h1 className="Shop_card_price">${product.price}</h1>
-                                    </div>
-                                    <div className="Cart_card_add">
-                                        <motion.div
-                                            whileTap={{ scale: 0.9 }}
-                                            onClick={() => isInCart ? handleRemoveFromCart(product) : handleAddToCart(product)}
-                                        >
-                                            <CartDeleteSVG/>
-                                        </motion.div>
-                                    </div>
-                                </motion.div>
-                            );
-                        })}
-                    </AnimatePresence>
+        <div className="Cart-section">
+            <div className="Cart-heading-container">
+                <div className="Cart-title-container">
+                    <h1>Cart</h1>
+                </div>
+                <div className="Cart-subtitle-container">
+                    <h1>
+                    Indulge in a curated selection of gourmet foods and refreshing beverages, each chosen to enhance your daily rituals. From artisanal coffee to delectable treats, your culinary delights are just a click away.
+                    </h1>
                 </div>
             </div>
-            <div className="hello-container">
-                <div>Sub Total: ${subtotal.toFixed(2)}</div>
-                <div>Delivery Fee: ${deliveryFee.toFixed(2)}</div>
-                <div>Total: ${total.toFixed(2)}</div>
+            <div className="Cart-container">
+                <div className="Cart-product-main-container">
+                    <div className="Cart_product_container">
+                        <AnimatePresence initial={false} custom={null}>
+                            {cartItems?.map((product) => {
+                                const isInCart = cartItems.some(item => item._id === product._id);
+                                return (
+                                    <motion.div
+                                        key={product._id}
+                                        initial="initial"
+                                        animate="in"
+                                        exit="out"
+                                        variants={pageVariants}
+                                        transition={pageTransition}
+                                        className="Cart_card"
+                                    >
+                                        <div
+                                            className="Cart_card_image"
+                                            style={{ backgroundImage: `url(${product.image_url})` }}
+                                        />
+                                        <div className="Shop_card_content">
+                                            <div className="Shop_card_top_content">
+                                                <h1 className="Shop_card_title">{product.name}</h1>
+                                                <CartMinusSVG />  <CartPlusSVG />
+                                            </div>
+                                            <h1 className="Shop_card_price">${product.price}</h1>
+                                        </div>
+                                        <div className="Cart_card_add">
+                                            <motion.div
+                                                whileTap={{ scale: 0.9 }}
+                                                onClick={() => isInCart ? handleRemoveFromCart(product) : handleAddToCart(product)}
+                                            >
+                                                <CartDeleteSVG />
+                                            </motion.div>
+                                        </div>
+                                    </motion.div>
+                                );
+                            })}
+                        </AnimatePresence>
+                    </div>
+                </div>
+                <div className="Cart-billing-container">
+                    <div className="Cart-billing-column">
+                        <div className="Cart-sub-total">Sub Total:</div>
+                        <div className="Cart-delivery-fees">Delivery Fee:</div>
+                        <div className="Cart-total-fee">Total:</div>
+                    </div>
+                    <div className="Cart-prices-column">
+                        <div className="Cart-price">${subtotal.toFixed(2)}</div>
+                        <div className="Cart-price">${deliveryFee.toFixed(2)}</div>
+                        <div className="Cart-price">${total.toFixed(2)}</div>
+                        
+                        <div className="Cart-checkout-button">
+                            <button>Checkout</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     );

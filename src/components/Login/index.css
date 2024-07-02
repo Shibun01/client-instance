@@ -288,7 +288,7 @@
     }
     .container {
         flex-direction: column;
-        padding: 0;
+        padding: 0 !important;
         gap: 15px;
     }
     .main-container{
