@@ -13,6 +13,7 @@ import MobileHeader from './components/Common/Header/Moblie';
 import Favorites from './components/Favorite';
 import Profile from './components/Profile';
 import AddToCart from './components/Cart';
+import RedirectToLogin from './middleware/RedirectLogin';
 
 const pageVariants = {
   initial: {
@@ -34,6 +35,8 @@ const pageTransition = {
   ease: "anticipate",
   duration: 0.5
 };
+
+
 
 const AnimatedRoutes = () => {
   const location = useLocation();
@@ -130,7 +133,7 @@ const AnimatedRoutes = () => {
             </AuthRoute>
           </motion.div>
         } />
-        <Route path="*" element={<Navigate to="/login" />} />
+        <Route path="*" element={<RedirectToLogin/>} />
       </Routes>
     </AnimatePresence>
   );

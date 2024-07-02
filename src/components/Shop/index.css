@@ -206,8 +206,8 @@
 }
 
 .Shop_card_image {
-    width: 9rem;
-    height: 9.8rem;
+    width: 30%;
+    height: 100%;
     border-radius: 4px;
     background-size: cover;
     background-repeat: no-repeat;
@@ -262,7 +262,7 @@
     }
 
     .Shop_card_image {
-        width: 50%;
+        width: 40%;
         height: auto;
     }
 
@@ -299,4 +299,7 @@
         line-height: 0.1rem;
     }
 
+    .Shop_detail_title{
+        font-size: 1.4rem;
+    }
 }

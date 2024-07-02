@@ -1,9 +1,17 @@
 import React from "react";
 import "./index.css";
 import { useSelector } from "react-redux";
+import LogoutSVG from "../../utils/svgs/Common/LogoutSVG";
+import { useMediaQuery } from "react-responsive";
 
 const Profile = () => {
     const userItems = useSelector(state => state.auth.user);
+    const logout = (path) => {
+        window.location.replace(path);
+    }
+
+    const isDesktop = useMediaQuery({ minWidth: 768 });
+
     return (
         <div className="profile-container">
             <div className="profile-header">
@@ -13,6 +21,12 @@ const Profile = () => {
             <div className="profile-details">
                 <h1><strong>Email:</strong> {userItems.email}</h1>
             </div>
+            {!isDesktop && (
+            <div className="profile-details profile-logout"> 
+               <h1 className="profile-logout-icon"><strong>Logout</strong></h1> <span onClick={() => logout('/login')}><LogoutSVG /></span>
+            </div>
+
+            )}
         </div>
     );
 };

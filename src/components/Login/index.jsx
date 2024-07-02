@@ -64,7 +64,7 @@ const Login = () => {
         setPopupMessage(message);
         setPopupIconType("success");
         setShowPopup(true);
-        setTimeout(() => setShowPopup(false), 2000);
+        // setTimeout(() => setShowPopup(false), 2000);
     };
 
     const handleRegisterSubmit = async (e) => {
@@ -170,8 +170,8 @@ const Login = () => {
                                         required
                                         className="input-field-inner"
                                     />
-                                    {emailError && <p className="error-text">{emailError}</p>}
                                 </div>
+                                    {emailError && <h1 className="error-text">{emailError}</h1>}
                                 <div className="input-field">
                                     <PasswordSVG />
                                     <input
@@ -182,8 +182,8 @@ const Login = () => {
                                         required
                                         className="input-field-inner"
                                     />
-                                    {passwordError && <p className="error-text">{passwordError}</p>}
                                 </div>
+                                    {passwordError && <h1 className="error-text">{passwordError}</h1>}
                                 <div className="button-group">
                                     <button type="submit" className="login-button">
                                         {loginLoading ? "Logging in..." : "Log in"}
@@ -222,8 +222,8 @@ const Login = () => {
                                         required
                                         className="input-field-inner"
                                     />
-                                    {emailError && <p className="error-text">{emailError}</p>}
                                 </div>
+                                    {emailError && <h1 className="error-text">{emailError}</h1>}
                                 <div className="input-field">
                                     <svg
                                         width="28"
@@ -246,8 +246,8 @@ const Login = () => {
                                         required
                                         className="input-field-inner"
                                     />
-                                    {passwordError && <p className="error-text">{passwordError}</p>}
                                 </div>
+                                    {passwordError && <h1 className="error-text">{passwordError}</h1>}
                                 <div className="button-group">
                                     <button type="submit" className="login-button">
                                         {registerLoading ? "Registering..." : "Register"}
