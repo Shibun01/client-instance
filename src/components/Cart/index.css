@@ -148,6 +148,10 @@
 
 
 @media (max-width: 480px) {
+
+    .Cart_product_container{
+        height: 30rem;
+    }
     .Cart-container {
         flex-direction: column;
         padding-right: 0;
@@ -170,6 +174,7 @@
         padding-left: .8rem;
         padding-top: 0.8rem;
         justify-content: center;
+        padding-bottom: 5rem;
     }
 
     .Cart_card_add {

@@ -6,13 +6,19 @@ import { useGetAllShopsQuery } from "../../lib/redux/features/dashboard/shopsApi
 import SearchIconSVG from "../../utils/svgs/Dashboard/SearchIconSVG";
 import ExploreSVG from "../../utils/svgs/Common/ExploreSVG";
 import { useMediaQuery } from "react-responsive";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import StarSVG from "../../utils/svgs/Common/StarSVG";
-import CloseMenuSVG from "../../utils/svgs/CloseMenuSVG";
+
+const pageVariants = {
+    initial: { opacity: 0, y: -100 },
+    in: { opacity: 1, y: 0 },
+    out: { opacity: 0, y: 50 }
+};
+
+const pageTransition = { type: "tween", ease: "anticipate", duration: 0.7 };
 
 const Dashboard = () => {
     const [searchQuery, setSearchQuery] = useState('');
-    const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
     const { data: ShopData, error, isLoading } = useGetAllShopsQuery();
     const navigate = useNavigate();
     const isDesktop = useMediaQuery({ minWidth: 768 });
@@ -25,10 +31,6 @@ const Dashboard = () => {
         navigate('/map', { state: { shops: ShopData?.data || [] } });
     };
 
-    const handleCloseFilterModal = () => {
-        setIsFilterModalOpen(false);
-    };
-
     const filteredShops = ShopData?.data?.filter(shop =>
         shop.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
         shop.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -37,39 +39,46 @@ const Dashboard = () => {
     );
 
     return (
-        <motion.div
-            className="Dashboard_Container"
-            initial={{ opacity: 0, y: -100 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 30 }}
-            transition={{ duration: 0.6  }}
-        >
+        <AnimatePresence mode="wait">
             <div className="Dashboard_Body_container">
                 <div className="Dashboard_Search_container">
-                    <div className="Dashboard_Search_inner_container">
-                        <div className={`Dashboard_Search_input_container ${!isDesktop ? 'Desktop_Search_mobile_container' : ''}`}>
-                            <div className="Dashboard_Search_input">
-                                <SearchIconSVG />
-                                <input
-                                    type="text"
-                                    className="Dashboard_Search_text"
-                                    placeholder="Search"
-                                    value={searchQuery}
-                                    onChange={(e) => setSearchQuery(e.target.value)}
-                                />
-                            </div>
-                            <div onClick={handleMapClick} className="Dashboard_Explore_container">
-                                <ExploreSVG />
+                    <motion.div
+                        className="Dashboard_Container"
+                        initial={{ opacity: 0, y: -100 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 100 }}
+                        transition={{ duration: 0.7 }}
+                    >
+                        <div className="Dashboard_Search_inner_container">
+                            <div className={`Dashboard_Search_input_container ${!isDesktop ? 'Desktop_Search_mobile_container' : ''}`}>
+                                <div className="Dashboard_Search_input">
+                                    <SearchIconSVG />
+                                    <input
+                                        type="text"
+                                        className="Dashboard_Search_text"
+                                        placeholder="Search"
+                                        value={searchQuery}
+                                        onChange={(e) => setSearchQuery(e.target.value)}
+                                    />
+                                </div>
+                                <div onClick={handleMapClick} className="Dashboard_Explore_container">
+                                    <ExploreSVG />
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </motion.div>
                 </div>
 
                 <div className="Dashboard_Shops_container">
                     <div className="Dashboard_Shops_grid">
                         {filteredShops?.map((shop) => (
-                            <div
+                            <motion.div
                                 key={shop._id}
+                                initial="initial"
+                                animate="in"
+                                exit="out"
+                                variants={pageVariants}
+                                transition={pageTransition}
                                 className="Dashboard_Shops_card"
                                 onClick={() => handleCardClick(shop._id)}
                             >
@@ -91,27 +100,12 @@ const Dashboard = () => {
                                         </p>
                                     </div>
                                 </div>
-                            </div>
+                            </motion.div>
                         ))}
                     </div>
                 </div>
             </div>
-
-            {isFilterModalOpen && (
-                <motion.div
-                    className="filter-modal"
-                    initial={{ opacity: 0, y: -50 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -50 }}
-                >
-                    <div className="filter-modal-content">
-                        <h2>Filter Options</h2>
-                        {/* Add your filter options here */}
-                        <span onClick={handleCloseFilterModal}><CloseMenuSVG /></span>
-                    </div>
-                </motion.div>
-            )}
-        </motion.div>
+        </AnimatePresence>
     );
 }
 

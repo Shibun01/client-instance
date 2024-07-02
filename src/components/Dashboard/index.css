@@ -355,6 +355,10 @@
 }
 
 @media (max-width: 768px) {
+
+    .Dashboard_Container{
+        padding-bottom: 0rem;
+    }
     .filter-modal-content {
         padding: 15px;
     }

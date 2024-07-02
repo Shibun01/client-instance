@@ -56,17 +56,17 @@ const AnimatedRoutes = () => {
           </motion.div>
         } />
         <Route path="/dashboard" element={
-          <motion.div
-            initial="initial"
-            animate="in"
-            exit="out"
-            variants={pageVariants}
-            transition={pageTransition}
-          >
+          // <motion.div
+          //   initial="initial"
+          //   animate="in"
+          //   exit="out"
+          //   variants={pageVariants}
+          //   transition={pageTransition}
+          // >
             <AuthRoute>
               <Dashboard />
             </AuthRoute>
-          </motion.div>
+          // </motion.div>
         } />
         <Route path="/shop" element={
           <motion.div

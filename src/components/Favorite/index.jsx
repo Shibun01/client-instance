@@ -16,7 +16,7 @@ const pageVariants = {
     out: { opacity: 0, x: 100 }
 };
 
-const pageTransition = { type: "tween", ease: "anticipate", duration: 0.5 };
+const pageTransition = { type: "tween", ease: "anticipate", duration: 0.4 };
 
 const Favorites = () => {
     const dispatch = useDispatch();

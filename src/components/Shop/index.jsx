@@ -27,7 +27,7 @@ const pageVariants = {
     out: { opacity: 0, x: 100 }
 };
 
-const pageTransition = { type: "tween", ease: "anticipate", duration: 0.5 };
+const pageTransition = { type: "tween", ease: "anticipate", duration: 0.4 };
 
 const Shop = () => {
     const [selectedCategory, setSelectedCategory] = useState('Coffee');
@@ -139,18 +139,16 @@ const Shop = () => {
                                     </div>
                                     <h1 className="Shop_card_price">${product.price}</h1>
                                 </div>
-                                <div className="Shop_card_add">
+                                <div className="Shop_card_add" onClick={() => isInCart ? handleRemoveFromCart(product) : handleAddToCart(product)}>
                                     <motion.div
                                         whileTap={{ scale: 0.9 }}
-                                        onClick={() => isInCart ? handleRemoveFromCart(product) : handleAddToCart(product)}
                                     >
                                         {isInCart ? <TickSVG /> : <AddPlusSVG />}
                                     </motion.div>
                                 </div>
-                                <div className="Shop_favorite_add">
+                                <div className="Shop_favorite_add" onClick={() => isInFav ? handleRemoveFromFav(product) : handleAddToFav(product)}>
                                     <motion.div
                                         whileTap={{ scale: 0.9 }}
-                                        onClick={() => isInFav ? handleRemoveFromFav(product) : handleAddToFav(product)}
                                     >
                                         {isInFav ? <AddedFavoriteSVG /> : <FavoriteAddSVG />}
                                     </motion.div>

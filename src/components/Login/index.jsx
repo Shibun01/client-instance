@@ -19,7 +19,7 @@ const pageVariants = {
     out: { opacity: 0, x: 100 }
 };
 
-const pageTransition = { type: "tween", ease: "anticipate", duration: 0.5 };
+const pageTransition = { type: "tween", ease: "anticipate", duration: 0.4 };
 
 const Login = () => {
     const [login, { isLoading: loginLoading }] = useLoginMutation();
@@ -38,9 +38,20 @@ const Login = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
+        if (!sessionStorage.getItem('reloaded')) {
+            sessionStorage.setItem('reloaded', 'true');
+            window.location.reload(true);
+        }
+    }, [])
+
+    useEffect(() => {
         const handleResize = () => setIsMobile(window.innerWidth < 768);
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
+        if (!sessionStorage.getItem('reloaded')) {
+            sessionStorage.setItem('reloaded', 'true');
+            window.location.reload(true);
+        }
     }, []);
 
     useEffect(() => {
