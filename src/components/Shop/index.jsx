@@ -16,6 +16,7 @@ import TickSVG from "../../utils/svgs/Shops/Products/CartAddedSVG";
 import FavoriteAddSVG from "../../utils/svgs/Shops/Products/FavoriteSVG";
 import { addToFav, removeFromFav } from "../../lib/redux/reducers/favReducer";
 import AddedFavoriteSVG from "../../utils/svgs/Shops/Products/AddedFavoriteSVG";
+import LoadingSVG from "../../utils/svgs/Common/LoadingSVG";
 
 const useQuery = () => {
     return new URLSearchParams(useLocation().search);
@@ -40,8 +41,6 @@ const Shop = () => {
     const cartItems = useSelector(state => state.cart.items);
     const favItems = useSelector(state => state.fav.items);
 
-    if (isLoading) return <div>Loading...</div>;
-    if (error) return <div>Error loading shop details</div>;
 
     const handleCategoryClick = (category) => {
         setSelectedCategory(category);
@@ -66,99 +65,114 @@ const Shop = () => {
     const products = productData?.data.filter((item) => selectedCategory.toLowerCase() === item.category);
 
     return (
-        <div className="Shop_container">
-            <div className="Shop_detail_container">
-                <div className="Shop_image_section">
-                    {shop?.data[0]?.images?.map((image, index) => (
-                        <div className="Shop_image" key={index}>
-                            <img src={image} alt={`Shop Image ${index + 1}`} />
-                        </div>
-                    ))}
+        <>
+            {productLoading || isLoading ? (
+                <div className="Favorite-container-nodata">
+                    <AnimatePresence mode="wait">
+                        <motion.div>
+                            <div className="Favorite-container-nodata-icon"><LoadingSVG /></div>
+                        </motion.div>
+                    </AnimatePresence>
                 </div>
+            )
+                :
+                (
 
-                <div className="Shop_detail_content">
-                    <span className="Shop_detail_title">{shop?.data[0]?.name}</span>
-                    <span className="Shop_detail_subtitle">{shop?.data[0]?.description}</span>
-                    <div className="Shop_detail_rating_container">
-                        <StartSVG />
-                        <span className="Shop_detail_rating_text">
-                            <span className="Shop_detail_rating_value">4.5</span>
-                            <span className="Shop_detail_rating_reviews"> (1200 reviews)</span>
-                        </span>
-                    </div>
-                </div>
-            </div>
-            <div className="Shop_category_container">
-                <div className="Shop_category_inner_container">
-                    <div
-                        className={`Category_icons ${selectedCategory === 'Coffee' ? 'selected' : ''}`}
-                        onClick={() => handleCategoryClick('Coffee')}
-                    >
-                        <CategoryCoffeeSVG />
-                        <p>Coffee</p>
-                    </div>
-                    <div
-                        className={`Category_icons ${selectedCategory === 'Drinks' ? 'selected' : ''}`}
-                        onClick={() => handleCategoryClick('Drinks')}
-                    >
-                        <CategoryDrinksSVG />
-                        <p>Drinks</p>
-                    </div>
-                    <div
-                        className={`Category_icons ${selectedCategory === 'Foods' ? 'selected' : ''}`}
-                        onClick={() => handleCategoryClick('Foods')}
-                    >
-                        <CategoryFoodSVG />
-                        <p>Foods</p>
-                    </div>
-                </div>
-            </div>
-            <div className="Shop_product_container">
-                <AnimatePresence mode="wait">
-                    {products?.map((product) => {
-                        const isInCart = cartItems.some(item => item._id === product._id);
-                        const isInFav = favItems.some(item => item._id === product._id);
-                        return (
-                            <motion.div
-                                key={product._id}
-                                initial="initial"
-                                animate="in"
-                                exit="out"
-                                variants={pageVariants}
-                                transition={pageTransition}
-                                className="Shop_card"
-                            >
-                                <div
-                                    className="Shop_card_image"
-                                    style={{ backgroundImage: `url(${product.image_url})` }}
-                                />
-                                <div className="Shop_card_content">
-                                    <div className="Shop_card_top_content">
-                                        <h1 className="Shop_card_title">{product.name}</h1>
-                                        <h1 className="Shop_card_description">{product.description}</h1>
+                    <div className="Shop_container">
+                        <div className="Shop_detail_container">
+                            <div className="Shop_image_section">
+                                {shop?.data[0]?.images?.map((image, index) => (
+                                    <div className="Shop_image" key={index}>
+                                        <img src={image} alt={`Shop Image ${index + 1}`} />
                                     </div>
-                                    <h1 className="Shop_card_price">${product.price}</h1>
+                                ))}
+                            </div>
+
+                            <div className="Shop_detail_content">
+                                <span className="Shop_detail_title">{shop?.data[0]?.name}</span>
+                                <span className="Shop_detail_subtitle">{shop?.data[0]?.description}</span>
+                                <div className="Shop_detail_rating_container">
+                                    <StartSVG />
+                                    <span className="Shop_detail_rating_text">
+                                        <span className="Shop_detail_rating_value">4.5</span>
+                                        <span className="Shop_detail_rating_reviews"> (1200 reviews)</span>
+                                    </span>
                                 </div>
-                                <div className="Shop_card_add" onClick={() => isInCart ? handleRemoveFromCart(product) : handleAddToCart(product)}>
-                                    <motion.div
-                                        whileTap={{ scale: 0.9 }}
-                                    >
-                                        {isInCart ? <TickSVG /> : <AddPlusSVG />}
-                                    </motion.div>
+                            </div>
+                        </div>
+                        <div className="Shop_category_container">
+                            <div className="Shop_category_inner_container">
+                                <div
+                                    className={`Category_icons ${selectedCategory === 'Coffee' ? 'selected' : ''}`}
+                                    onClick={() => handleCategoryClick('Coffee')}
+                                >
+                                    <CategoryCoffeeSVG />
+                                    <p>Coffee</p>
                                 </div>
-                                <div className="Shop_favorite_add" onClick={() => isInFav ? handleRemoveFromFav(product) : handleAddToFav(product)}>
-                                    <motion.div
-                                        whileTap={{ scale: 0.9 }}
-                                    >
-                                        {isInFav ? <AddedFavoriteSVG /> : <FavoriteAddSVG />}
-                                    </motion.div>
+                                <div
+                                    className={`Category_icons ${selectedCategory === 'Drinks' ? 'selected' : ''}`}
+                                    onClick={() => handleCategoryClick('Drinks')}
+                                >
+                                    <CategoryDrinksSVG />
+                                    <p>Drinks</p>
                                 </div>
-                            </motion.div>
-                        );
-                    })}
-                </AnimatePresence>
-            </div>
-        </div>
+                                <div
+                                    className={`Category_icons ${selectedCategory === 'Foods' ? 'selected' : ''}`}
+                                    onClick={() => handleCategoryClick('Foods')}
+                                >
+                                    <CategoryFoodSVG />
+                                    <p>Foods</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="Shop_product_container">
+                            <AnimatePresence mode="wait">
+                                {products?.map((product) => {
+                                    const isInCart = cartItems.some(item => item._id === product._id);
+                                    const isInFav = favItems.some(item => item._id === product._id);
+                                    return (
+                                        <motion.div
+                                            key={product._id}
+                                            initial="initial"
+                                            animate="in"
+                                            exit="out"
+                                            variants={pageVariants}
+                                            transition={pageTransition}
+                                            className="Shop_card"
+                                        >
+                                            <div
+                                                className="Shop_card_image"
+                                                style={{ backgroundImage: `url(${product.image_url})` }}
+                                            />
+                                            <div className="Shop_card_content">
+                                                <div className="Shop_card_top_content">
+                                                    <h1 className="Shop_card_title">{product.name}</h1>
+                                                    <h1 className="Shop_card_description">{product.description}</h1>
+                                                </div>
+                                                <h1 className="Shop_card_price">${product.price}</h1>
+                                            </div>
+                                            <div className="Shop_card_add" onClick={() => isInCart ? handleRemoveFromCart(product) : handleAddToCart(product)}>
+                                                <motion.div
+                                                    whileTap={{ scale: 0.9 }}
+                                                >
+                                                    {isInCart ? <TickSVG /> : <AddPlusSVG />}
+                                                </motion.div>
+                                            </div>
+                                            <div className="Shop_favorite_add" onClick={() => isInFav ? handleRemoveFromFav(product) : handleAddToFav(product)}>
+                                                <motion.div
+                                                    whileTap={{ scale: 0.9 }}
+                                                >
+                                                    {isInFav ? <AddedFavoriteSVG /> : <FavoriteAddSVG />}
+                                                </motion.div>
+                                            </div>
+                                        </motion.div>
+                                    );
+                                })}
+                            </AnimatePresence>
+                        </div>
+                    </div>
+                )}
+        </>
     );
 }
 
