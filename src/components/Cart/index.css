@@ -146,6 +146,11 @@
     margin-left: 16px;
 }
 
+.Cart_card_quantity{
+    font-size: 12px;
+    font-weight: 600;
+}
+
 
 @media (max-width: 480px) {
 
@@ -192,8 +197,8 @@
 
     .Cart_card_top_content {
         display: flex;
-        flex-direction: column;
-        gap: 0.3rem;
+        gap: 0.8rem;
+        place-items: center;
     }
 
 }

@@ -2,12 +2,7 @@ import React, { useEffect, useState } from "react";
 import './index.css';
 import { AnimatePresence, motion } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart, removeFromCart } from "../../lib/redux/reducers/cartReducer";
-import { addToFav, removeFromFav } from "../../lib/redux/reducers/favReducer";
-import TickSVG from "../../utils/svgs/Shops/Products/CartAddedSVG";
-import AddPlusSVG from "../../utils/svgs/Shops/Products/AddPlusSVG";
-import AddedFavoriteSVG from "../../utils/svgs/Shops/Products/AddedFavoriteSVG";
-import FavoriteAddSVG from "../../utils/svgs/Shops/Products/FavoriteSVG";
+import { addToCart, removeFromCart, deleteFromCart } from "../../lib/redux/reducers/cartReducer";
 import CartPlusSVG from "../../utils/svgs/Cart/CartPlusSVG";
 import CartMinusSVG from "../../utils/svgs/Cart/CartMinusSVG";
 import CartDeleteSVG from "../../utils/svgs/Cart/CartDeleteSVG";
@@ -30,7 +25,7 @@ const AddToCart = () => {
     const [total, setTotal] = useState(0);
 
     useEffect(() => {
-        const subTotal = cartItems.reduce((acc, item) => acc + item.price, 0);
+        const subTotal = cartItems.reduce((acc, item) => acc + (item.price * item.quantity), 0);
         setSubtotal(subTotal);
 
         const totalAmount = subTotal + deliveryFee;
@@ -38,11 +33,16 @@ const AddToCart = () => {
     }, [cartItems, deliveryFee]);
 
     const handleAddToCart = (product) => {
+        console.log('calling')
         dispatch(addToCart(product));
     };
 
     const handleRemoveFromCart = (product) => {
         dispatch(removeFromCart(product));
+    };
+
+    const handleDeleteFromCart = (product) => {
+        dispatch(deleteFromCart(product));
     };
 
     return (
@@ -64,7 +64,6 @@ const AddToCart = () => {
                             <div className="Cart_product_container">
                                 <AnimatePresence initial={false} custom={null}>
                                     {cartItems?.map((product) => {
-                                        const isInCart = cartItems.some(item => item._id === product._id);
                                         return (
                                             <motion.div
                                                 key={product._id}
@@ -80,16 +79,18 @@ const AddToCart = () => {
                                                     style={{ backgroundImage: `url(${product.image_url})` }}
                                                 />
                                                 <div className="Cart_card_content">
+                                                    <h1 className="Shop_card_title">{product.name}</h1>
                                                     <div className="Cart_card_top_content">
-                                                        <h1 className="Shop_card_title">{product.name}</h1>
-                                                        <CartMinusSVG />  <CartPlusSVG />
+                                                        <span onClick={() => handleRemoveFromCart(product)} ><CartMinusSVG />  </span>
+                                                        <span className="Cart_card_quantity">{product.quantity}</span>
+                                                        <span onClick={() => handleAddToCart(product)} ><CartPlusSVG /></span>
                                                     </div>
-                                                    <h1 className="Shop_card_price">${product.price}</h1>
+                                                    <h1 className="Shop_card_price">${(product.price * product.quantity).toFixed(2)}</h1>
                                                 </div>
                                                 <div className="Cart_card_add">
                                                     <motion.div
                                                         whileTap={{ scale: 0.9 }}
-                                                        onClick={() => isInCart ? handleRemoveFromCart(product) : handleAddToCart(product)}
+                                                        onClick={() => handleDeleteFromCart(product)}
                                                     >
                                                         <CartDeleteSVG />
                                                     </motion.div>
@@ -118,24 +119,18 @@ const AddToCart = () => {
                         </div>
                     </div>
                 </div>
-
-            )
-                :
-                (
-                    <>
-                        <div className="Favorite-container-nodata">
-                            <AnimatePresence mode="wait">
-                                <motion.div>
-                                    <div className="Favorite-container-nodata-text">No Cart Added</div>
-                                </motion.div>
-                                <motion.div>
-                                    <div className="Favorite-container-nodata-icon"><SadSVG /></div>
-                                </motion.div>
-                            </AnimatePresence>
-                        </div>
-                    </>
-                )
-            }
+            ) : (
+                <div className="Favorite-container-nodata">
+                    <AnimatePresence mode="wait">
+                        <motion.div>
+                            <div className="Favorite-container-nodata-text">No Cart Added</div>
+                        </motion.div>
+                        <motion.div>
+                            <div className="Favorite-container-nodata-icon"><SadSVG /></div>
+                        </motion.div>
+                    </AnimatePresence>
+                </div>
+            )}
         </>
     );
 }
