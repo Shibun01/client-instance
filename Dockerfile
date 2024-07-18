@@ -13,7 +13,7 @@ RUN npm install --production
 # Copy the entire project directory to the working directory
 COPY . .
 
-ENV REACT_APP_BASE_URL='http://coffee-shop-637368184.ap-south-1.elb.amazonaws.com/api/v1/'
+ENV REACT_APP_BASE_URL='https://brewscout-rest.onrender.com/api/v1/'
 ENV REACT_APP_ACCESS_TOKEN='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QiLCJlbWFpbCI6InRlc3RAZ21haWwuY29tIiwiaWF0IjoxNTE2MjM5MDIyfQ.22wh4VApyL16h91_FJ2u0qvSrICt-dYr0Mch1mMtNPo'
 
 
