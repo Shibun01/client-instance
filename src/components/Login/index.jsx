@@ -6,7 +6,6 @@ import { loginSuccess, loginFailure, logout } from "../../lib/redux/reducers/aut
 import { motion, AnimatePresence } from "framer-motion";
 import Popup from "../Common/Popup/Popup";
 import './index.css';
-import { useNavigate } from "react-router-dom";
 import { clearCart } from "../../lib/redux/reducers/cartReducer";
 import EmailSVG from "../../utils/svgs/Login/EmailSVG";
 import PasswordSVG from "../../utils/svgs/Login/PasswordSVG";
@@ -35,14 +34,13 @@ const Login = () => {
     const [currentStep, setCurrentStep] = useState(1);
     const [isMobile, setIsMobile] = useState(window.innerWidth < 480);
     const dispatch = useDispatch();
-    const navigate = useNavigate();
 
-    useEffect(() => {
-        if (!sessionStorage.getItem('reloaded')) {
-            sessionStorage.setItem('reloaded', 'true');
-            window.location.reload(true);
-        }
-    }, [])
+    // useEffect(() => {
+    //     if (!sessionStorage.getItem('reloaded')) {
+    //         sessionStorage.setItem('reloaded', 'true');
+    //         window.location.reload(true);
+    //     }
+    // }, [])
 
     useEffect(() => {
         const handleResize = () => setIsMobile(window.innerWidth < 480);
