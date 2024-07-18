@@ -141,12 +141,12 @@ const AnimatedRoutes = () => {
 
 const App = () => {
   const isLoginPage = window.location.pathname === "/login";
-  const isDesktop = useMediaQuery({ minWidth: 768 });
+  const isDesktop = useMediaQuery({ minWidth: 1024 });
 
   return (
     <Router>
-      {!isLoginPage && !isDesktop && <MobileHeader />}
-      {!isLoginPage && <DesktopHeader />}
+      {!isLoginPage && !isDesktop && <AuthRoute><MobileHeader /></AuthRoute>}
+      {!isLoginPage &&  <AuthRoute><DesktopHeader /></AuthRoute>}
       <motion.div
         initial="initial"
         animate="in"

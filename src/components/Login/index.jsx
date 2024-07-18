@@ -33,7 +33,7 @@ const Login = () => {
     const [popupMessage, setPopupMessage] = useState("");
     const [popupIconType, setPopupIconType] = useState("");
     const [currentStep, setCurrentStep] = useState(1);
-    const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+    const [isMobile, setIsMobile] = useState(window.innerWidth < 480);
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -45,13 +45,10 @@ const Login = () => {
     }, [])
 
     useEffect(() => {
-        const handleResize = () => setIsMobile(window.innerWidth < 768);
+        const handleResize = () => setIsMobile(window.innerWidth < 480);
+        console.log(window.innerWidth)
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
-        if (!sessionStorage.getItem('reloaded')) {
-            sessionStorage.setItem('reloaded', 'true');
-            window.location.reload(true);
-        }
     }, []);
 
     useEffect(() => {

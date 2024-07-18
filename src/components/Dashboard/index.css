@@ -3,15 +3,15 @@
     padding-bottom: 3.75rem;
 }
 
-.Dashboard_Explore_container{
+.Dashboard_Explore_container {
     cursor: pointer;
 }
 
-.Dashboard_Filter_container{
+.Dashboard_Filter_container {
     cursor: pointer;
 }
 
-.Desktop_Search_mobile_container{
+.Desktop_Search_mobile_container {
     width: 80% !important;
 }
 
@@ -238,8 +238,12 @@
 }
 
 @media (max-width: 480px) {
+    .Dashboard_Container{
+        padding-bottom: 2rem;
+    }
     .Dashboard_Shops_grid {
         grid-template-columns: repeat(2, 1fr);
+        padding-bottom: 5rem;
     }
 
     .Dashboard_Shops_card {
@@ -289,7 +293,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Semi-transparent background */
     z-index: 1000;
 }
 
@@ -354,11 +359,15 @@
     font-size: 16px;
 }
 
-@media (max-width: 768px) {
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    .Dashboard_Shops_grid{
+        padding-bottom: 5rem;
+    }
 
-    .Dashboard_Container{
+    .Dashboard_Container {
         padding-bottom: 0rem;
     }
+
     .filter-modal-content {
         padding: 15px;
     }
@@ -370,5 +379,23 @@
     .filter-modal-content button {
         font-size: 14px;
         padding: 8px 16px;
+    }
+
+    .Dashboard_Shops_container {
+        padding-top: 2.5rem;
+    }
+
+    .Dashboard_Shops_grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+        padding-bottom: 5rem;
+    }
+}
+
+@media screen and (min-width: 481px) and (max-width: 768px) {
+    .Dashboard_Shops_grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+        padding-bottom: 5rem;
     }
 }

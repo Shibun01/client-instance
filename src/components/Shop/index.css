@@ -247,6 +247,23 @@
     cursor: pointer;
 }
 
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .Shop_product_container{
+        grid-template-columns: repeat(2, 1fr);
+        padding-bottom: 5rem;
+    }
+}
+
+
+@media (min-width:481px) and (max-width: 768px) {
+    .Shop_product_container{
+        grid-template-columns: repeat(2, 1fr);
+        padding-bottom: 5rem;
+    }
+}
+
+
 @media (max-width: 480px) {
     .Shop_product_container {
         margin-bottom: 5rem;

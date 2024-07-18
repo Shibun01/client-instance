@@ -6,6 +6,7 @@
     align-items: center;
     flex-direction: column;
 }
+
 .mobile-content {
     /* Add your mobile-specific styles here */
     text-align: center;
@@ -14,7 +15,7 @@
     color: #333;
 }
 
-.error-text{
+.error-text {
     color: red;
     text-align: center;
     font-family: var(--ff-secondary);
@@ -36,10 +37,11 @@
     width: 100%;
 }
 
-.register{
+.register {
     cursor: pointer;
 }
-.header-subtitle .register:hover{
+
+.header-subtitle .register:hover {
     color: black;
 }
 
@@ -53,7 +55,8 @@
     height: auto;
     overflow: hidden;
     gap: 32px;
-    padding: 16px; /* Adjusted padding for better responsiveness */
+    padding: 16px;
+    /* Adjusted padding for better responsiveness */
     background: #fff;
 }
 
@@ -188,7 +191,7 @@
     color: #fff;
 }
 
-.login-button:hover{
+.login-button:hover {
     background-color: #3d4651;
 }
 
@@ -231,7 +234,7 @@
 @media (min-width: 1024px) {
     .container {
         flex-direction: row;
-        height: 832px;
+        /* height: 832px; */
         /* padding: 198px 32px; */
     }
 
@@ -257,11 +260,17 @@
     }
 }
 
-@media (min-width: 768px) and (max-width: 1023px) {
+@media (min-width: 769px) and (max-width: 1024px) {
+    .main-container {
+        height: 100%;
+    }
+
     .container {
         flex-direction: row;
-        /* height: 832px; */
-        padding: 0 32px; /* No large padding for laptops */
+        flex-direction: column;
+        padding: 0 32px;
+        /* No large padding for laptops */
+        gap: 0px;
     }
 
     .left-pane,
@@ -286,8 +295,16 @@
     }
 }
 
-@media (max-width: 767px) {
-    
+@media (min-width: 481px) and (max-width: 768px) {
+    .main-container{
+        height: 100%;
+    }
+
+    .left-pane,
+    .right-pane {
+        width: 60%;
+    }
+
     .header-title,
     .header-subtitle,
     .forgot-password,
@@ -298,25 +315,32 @@
 
 @media (max-width: 480px) {
 
-    .input-group{
+    .input-group {
         gap: 20px;
     }
-    .input-field{
+
+    .input-field {
         height: 2rem;
     }
+
+    .main-container{
+        overflow: auto;
+    }
+
     .container {
         flex-direction: column;
         padding: 0 !important;
         gap: 0;
-        height: 100vh;
+        height: 100%;
     }
-    .left-pane{
+
+    .left-pane {
         background: #582711;
         border-radius: 0;
         width: 100%;
     }
-    .right-pane{
+
+    .right-pane {
         padding: 0;
-        width: 80vw;
     }
 }

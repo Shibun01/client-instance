@@ -36,7 +36,7 @@ const DesktopHeader = () => {
         setIsMenuOpen(false);
     };
 
-    const isDesktop = useMediaQuery({ minWidth: 768 });
+    const isDesktop = useMediaQuery({ minWidth: 1024 });
 
     return (
         <div className={`Desktop-header-container ${!isDesktop ? 'Desktop-header-mobile-container' : ''}`}>
