@@ -21,6 +21,7 @@ ENV REACT_APP_ACCESS_TOKEN='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI
 ENV GENERATE_SOURCEMAP=false;
 
 # Build the React app
+RUN npm install cross-env
 RUN npm run build
 
 # Install serve globally to serve the application
